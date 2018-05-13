@@ -7,7 +7,9 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    crypto: [];
+    this.state= {
+      crypto: []
+    };
   }
 
   componentDidMount() {
