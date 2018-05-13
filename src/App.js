@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get()
+    axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')
     .then(res => {
       const crypto = res.data;
       console.log(crypto);
@@ -26,9 +26,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {Object.keys(this.state.crypto).map((key) => (
+          <div>
+            <span>{key}</span>
+            <span>{this.state.crypto[key]}</span>
+          </div>
+        ))}
       </div>
     );
   }
