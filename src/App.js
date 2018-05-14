@@ -7,6 +7,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+
     this.state= {
       crypto: [],
     };
@@ -16,7 +17,6 @@ class App extends Component {
     axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT&tsyms=USD')
     .then(res => {
       const crypto = res.data;
-      console.log(crypto);
       this.setState({
         crypto: crypto,
       });
