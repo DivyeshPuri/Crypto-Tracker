@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      crypto: []
+      crypto: [],
     };
   }
 
@@ -17,7 +17,9 @@ class App extends Component {
     .then(res => {
       const crypto = res.data;
       console.log(crypto);
-      this.setState({crypto: crypto});
+      this.setState({
+        crypto: crypto,
+      });
     })
   }
 
