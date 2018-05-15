@@ -28,7 +28,7 @@ class App extends Component {
       const crypto_list = res.data;
       console.log(crypto_list);
       this.setState({
-        crypto_list: crypto_list,
+        crypto_list: crypto_list.Data,
       });
     })
   }
@@ -40,6 +40,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+
+        {Object.keys(this.state.crypto_list).map((key) => (
+          <div>
+            <li>{this.state.crypto_list[key].Name}</li>
+          </div>
+        ))}
+
         {Object.keys(this.state.crypto).map((key) => (
           <div>
             <span>{key}</span>
