@@ -10,6 +10,7 @@ class App extends Component {
 
     this.state= {
       crypto: [],
+      crypto_list: [],
     };
   }
 
@@ -19,6 +20,15 @@ class App extends Component {
       const crypto = res.data;
       this.setState({
         crypto: crypto,
+      });
+    })
+
+    axios.get('https://www.cryptocompare.com/api/data/coinlist/')
+    .then(res => {
+      const crypto_list = res.data;
+      console.log(crypto_list);
+      this.setState({
+        crypto_list: crypto_list,
       });
     })
   }
@@ -33,7 +43,7 @@ class App extends Component {
         {Object.keys(this.state.crypto).map((key) => (
           <div>
             <span>{key}</span>
-            <span>{this.state.crypto[key]}</span>
+            <span>{this.state.crypto[key].USD}</span>
           </div>
         ))}
       </div>
