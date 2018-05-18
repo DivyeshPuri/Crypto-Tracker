@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
+import 'uikit/dist/css/uikit.min.css';
 
 UIkit.use(Icons);
 
@@ -55,13 +56,29 @@ class App extends Component {
 					<img src={logo} className="App-logo" alt="logo" />
 					<h1 className="App-title">Welcome to React</h1>
 				</header>
-
-				{Object.keys(this.state.crypto).map((key) => (
-					<div>
-						<span>{key}</span>
-						<span>{this.state.crypto[key].USD}</span>
-					</div>
-				))}
+				<div class="uk-grid uk-container-center uk-margin-large-left" >
+					{Object.keys(this.state.crypto).map((key) => (
+						<div class="uk-card uk-card-default uk-width-1-4 uk-margin-left uk-margin-large-top" data-uk-grid-margin>
+							<div class="uk-card-header">
+								<div class="uk-grid-small uk-flex-middle" uk-grid>
+									<div class="uk-width-auto">
+										Symbol here: {this.state.crypto[key].TOSYMBOL}
+									</div>
+									<div class="uk-width-expand">
+										<h3 class="uk-card-title uk-margin-remove-bottom">{key}</h3>
+										<p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time></p>
+									</div>
+								</div>
+							</div>
+							<div class="uk-card-body">
+								<p>{this.state.crypto[key].VOLUME24HOUR}</p>
+							</div>
+							<div class="uk-card-footer">
+								<a href="#" class="uk-button uk-button-text">{this.state.crypto[key].PRICE}</a>
+							</div>
+						</div>
+					))}
+				</div>
 			</div>
 		);
 	}
