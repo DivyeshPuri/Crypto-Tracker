@@ -42,7 +42,7 @@ class App extends Component {
 				.then(res => {
 					const crypto = res.data;
 					this.setState({
-						crypto: crypto,
+						crypto: crypto.DISPLAY,
 					});
 				})
 		})
@@ -62,19 +62,19 @@ class App extends Component {
 							<div class="uk-card-header">
 								<div class="uk-grid-small uk-flex-middle" uk-grid>
 									<div class="uk-width-auto">
-										Symbol here: {this.state.crypto[key].TOSYMBOL}
+										Symbol here: {this.state.crypto[key].USD.TOSYMBOL}
 									</div>
 									<div class="uk-width-expand">
 										<h3 class="uk-card-title uk-margin-remove-bottom">{key}</h3>
-										<p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time></p>
+										<p class="uk-text-meta uk-margin-remove-top">{this.state.crypto[key].USD.LOWDAY}</p>
 									</div>
 								</div>
 							</div>
 							<div class="uk-card-body">
-								<p>{this.state.crypto[key].VOLUME24HOUR}</p>
+								<p>{this.state.crypto[key].USD.VOLUME24HOUR}</p>
 							</div>
 							<div class="uk-card-footer">
-								<a href="#" class="uk-button uk-button-text">{this.state.crypto[key].PRICE}</a>
+								<a href="#" class="uk-button uk-button-text">{this.state.crypto[key].USD.PRICE}</a>
 							</div>
 						</div>
 					))}
