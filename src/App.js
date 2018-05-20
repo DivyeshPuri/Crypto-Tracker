@@ -35,10 +35,10 @@ class App extends Component {
 				count++;
 			};
 
-			const url = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + list + '&tsyms=USD';
+			const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + list + '&tsyms=USD';
 			console.log(url);
 
-			axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + list + '&tsyms=USD')
+			axios.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + list + '&tsyms=USD')
 				.then(res => {
 					const crypto = res.data;
 					this.setState({
