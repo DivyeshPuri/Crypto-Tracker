@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 import logo from './logo.svg';
 import axios from 'axios';
 import UIkit from 'uikit';
@@ -9,6 +10,11 @@ import { Button, Card, Image, Container } from 'semantic-ui-react';
 import { Header,} from "semantic-ui-react";
 
 UIkit.use(Icons);
+
+const divStyle = {
+	width: '23'
+  };
+  
 
 class App extends Component {
 
@@ -57,9 +63,9 @@ class App extends Component {
 				<div className="App-header">
             		<Header inverted as="h1">Crypto Tracker</Header>
             	</div>
-				<Card.Group itemsPerRow={4} centered>
+				<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}}>
 					{Object.keys(this.state.crypto).map((key) => (
-						<Card
+						<Card style={{"width": "23%"}}
 							image={logo}
 							header={key}
 							meta={this.state.crypto[key].USD.PRICE}
