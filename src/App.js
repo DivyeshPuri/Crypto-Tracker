@@ -58,24 +58,30 @@ class App extends Component {
 	}
 
 	render() {
-		return (
-			<div className="App">
-				<div className="App-header">
-            		<Header inverted as="h1">Crypto Tracker</Header>
-            	</div>
-				<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}}>
-					{Object.keys(this.state.crypto).map((key) => (
-						<Card style={{"width": "23%"}}
-							image={logo}
-							header={key}
-							meta={this.state.crypto[key].USD.PRICE}
-							description={this.state.crypto[key].USD.LASTMARKET}
-							extra={this.state.crypto[key].USD.LOWDAY}
-						/>
-					))}
-				</Card.Group>
-			</div>
-		);
+		
+		if(Object.keys(this.state.crypto).length === 0) {
+			return (<h1>Loading...</h1>)
+	  	}
+		else {
+			return (
+				<div className="App">
+					<div className="App-header">
+						<Header inverted as="h1">Crypto Tracker</Header>
+					</div>
+						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}}>
+							{Object.keys(this.state.crypto).map((key) => (
+								<Card style={{"width": "23%"}}
+									image={logo}
+									header={key}
+									meta={this.state.crypto[key].USD.PRICE}
+									description={this.state.crypto[key].USD.LASTMARKET}
+									extra={this.state.crypto[key].USD.LOWDAY}
+								/>
+							))}
+						</Card.Group>
+				</div>
+			);
+		}
 	}
 }
 
