@@ -5,6 +5,9 @@ import axios from 'axios';
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
 import 'uikit/dist/css/uikit.min.css';
+import icon from './bitcoin-coin.png';
+import { Button, Card, Image, Container } from 'semantic-ui-react';
+import { Header,} from "semantic-ui-react";
 
 UIkit.use(Icons);
 
@@ -52,33 +55,20 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to React</h1>
-				</header>
-				<div class="uk-grid uk-container-center uk-margin-large-left" >
+				<div className="App-header">
+            		<Header inverted as="h1">Crypto Tracker</Header>
+            	</div>
+				<Card.Group itemsPerRow={4} centered>
 					{Object.keys(this.state.crypto).map((key) => (
-						<div class="uk-card uk-card-default uk-width-1-4 uk-margin-left uk-margin-large-top" data-uk-grid-margin>
-							<div class="uk-card-header">
-								<div class="uk-grid-small uk-flex-middle" uk-grid>
-									<div class="uk-width-auto">
-										Symbol here: {this.state.crypto[key].USD.TOSYMBOL}
-									</div>
-									<div class="uk-width-expand">
-										<h3 class="uk-card-title uk-margin-remove-bottom">{key}</h3>
-										<p class="uk-text-meta uk-margin-remove-top">{this.state.crypto[key].USD.LOWDAY}</p>
-									</div>
-								</div>
-							</div>
-							<div class="uk-card-body">
-								<p>{this.state.crypto[key].USD.VOLUME24HOUR}</p>
-							</div>
-							<div class="uk-card-footer">
-								<a href="#" class="uk-button uk-button-text">{this.state.crypto[key].USD.PRICE}</a>
-							</div>
-						</div>
+						<Card
+							image={logo}
+							header={key}
+							meta={this.state.crypto[key].USD.PRICE}
+							description={this.state.crypto[key].USD.LASTMARKET}
+							extra={this.state.crypto[key].USD.LOWDAY}
+						/>
 					))}
-				</div>
+				</Card.Group>
 			</div>
 		);
 	}
