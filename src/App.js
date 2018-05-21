@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import logo from './logo.svg';
 import axios from 'axios';
-import icon from './bitcoin-coin.png';
 import { Button, Card, Image, Container } from 'semantic-ui-react';
 import { Header,} from "semantic-ui-react";
 
