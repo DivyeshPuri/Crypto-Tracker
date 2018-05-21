@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import logo from './logo.svg';
 import axios from 'axios';
-import UIkit from 'uikit';
-import Icons from 'uikit/dist/js/uikit-icons';
-import 'uikit/dist/css/uikit.min.css';
 import icon from './bitcoin-coin.png';
 import { Button, Card, Image, Container } from 'semantic-ui-react';
 import { Header,} from "semantic-ui-react";
 
-UIkit.use(Icons);
 
 const divStyle = {
 	width: '23'
