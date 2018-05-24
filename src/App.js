@@ -6,11 +6,6 @@ import { Button, Card, Image, Container } from 'semantic-ui-react';
 import { Header,} from "semantic-ui-react";
 
 
-const divStyle = {
-	width: '23'
-  };
-  
-
 class App extends Component {
 
 	constructor(props) {
