@@ -50,7 +50,16 @@ class App extends Component {
 	render() {
 		
 		if(Object.keys(this.state.crypto).length === 0) {
-			return (<h1 style={{display: "flex", alignItems: "center", height: "100vh", justifyContent: 'center',}}>Loading...</h1>)
+			return (
+				<div>
+					<div class="ui segment">
+  						<div class="ui active inverted dimmer" style={{"height" : "100vh"}}>
+							<div class="ui text loader">Loading</div>
+						</div>
+						<p></p>
+					</div>
+				</div>
+			)
 	  	}
 		else {
 			return (
