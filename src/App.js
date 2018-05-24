@@ -50,7 +50,7 @@ class App extends Component {
 	render() {
 		
 		if(Object.keys(this.state.crypto).length === 0) {
-			return (<h1>Loading...</h1>)
+			return (<h1 style={{display: "flex", alignItems: "center", height: "100vh", justifyContent: 'center',}}>Loading...</h1>)
 	  	}
 		else {
 			return (
