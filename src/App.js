@@ -70,7 +70,7 @@ class App extends Component {
 						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}}>
 							{Object.keys(this.state.crypto).map((key) => (
 								<Card style={{"width": "23%"}}
-									image={logo}
+									image={'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl}
 									header={key}
 									meta={this.state.crypto[key].USD.PRICE}
 									description={this.state.crypto[key].USD.LASTMARKET}
