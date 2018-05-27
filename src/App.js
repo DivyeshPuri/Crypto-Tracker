@@ -24,27 +24,18 @@ class App extends Component {
 			this.setState({
 				crypto_list: crypto_list.Data,
 			});
-			var list = '';
-			var count = 0;
-			for (var element in crypto_list.Data){
-				if(count < 40) {
-					list = list + crypto_list.Data[element].Name + ',';	
-				}
-				count++;
-			};
-
-			const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + list + '&tsyms=USD';
-			console.log(url);
-
-			axios.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + list + '&tsyms=USD')
-				.then(res => {
-					const crypto = res.data;
-					this.setState({
-						crypto: crypto.DISPLAY,
-					});
-				})
 		})
-		
+
+		//BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,TRON,IOT
+		//MTL,PIVX,PART,QTUM,SC,UBIQ,LSK,SYS,BNB,QASH,RDN*,REQ,GRS,AMB,BAT,GNT,POWR,VEN,PAY,OMG,ENJ,KNC,XLM,SALT,BNT,SUB,ARK,ZEC,STRAT
+		//ZRX,ANT,QSP,NAV
+		axios.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,TRON,IOT,SC,GNT,MTL,PIVX,PART,QTUM,UBQ,LSK,SYS,BNB,QASH,RDN*,REQ,GRS,AMB,BAT,POWR,VEN,PAY,OMG,ENJ,KNC,XLM,SALT,BNT,SUB,ARK,ZEC,STRAT,ZRX,ANT,QSP,NAV&tsyms=USD')
+		.then(res => {
+			const crypto = res.data;
+			this.setState({
+				crypto: crypto.DISPLAY,
+			});
+		})
 	}
 
 	render() {
@@ -67,9 +58,9 @@ class App extends Component {
 					<div className="App-header">
 						<Header inverted as="h1">Crypto Tracker</Header>
 					</div>
-						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}}>
+						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}} secondary>
 							{Object.keys(this.state.crypto).map((key) => (
-								<Card style={{"width": "23%"}}
+								<Card style={{"width": "15%", "height": "15%"}}
 									image={'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl}
 									header={key}
 									meta={this.state.crypto[key].USD.PRICE}
