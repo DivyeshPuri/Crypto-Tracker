@@ -59,7 +59,7 @@ class App extends Component {
 					</div>
 						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}} secondary>
 							{Object.keys(this.state.crypto).map((key) => (
-								<Card style={{"width": "15%", "height": "15%"}}
+								<Card style={{"width": "18%", "height": "18%"}}
 									image= { require('./images/' + key + '.svg') }
 									header={key}
 									meta={this.state.crypto[key].USD.PRICE}
