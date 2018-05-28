@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import './App.css';
-import logo from './logo.svg';
 import axios from 'axios';
-import { Button, Card, Image, Container } from 'semantic-ui-react';
-import { Header,} from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Card, Header } from 'semantic-ui-react';
+import './App.css';
 
 
 class App extends Component {
@@ -14,6 +12,7 @@ class App extends Component {
 		this.state= {
 			crypto: [],
 			crypto_list: [],
+			images: {},
 		};
 	}
 
@@ -29,7 +28,8 @@ class App extends Component {
 		//BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,TRON,IOT
 		//MTL,PIVX,PART,QTUM,SC,UBIQ,LSK,SYS,BNB,QASH,RDN*,REQ,GRS,AMB,BAT,GNT,POWR,VEN,PAY,OMG,ENJ,KNC,XLM,SALT,BNT,SUB,ARK,ZEC,STRAT
 		//ZRX,ANT,QSP,NAV
-		axios.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,TRON,IOT,SC,GNT,MTL,PIVX,PART,QTUM,UBQ,LSK,SYS,BNB,QASH,RDN*,REQ,GRS,AMB,BAT,POWR,VEN,PAY,OMG,ENJ,KNC,XLM,SALT,BNT,SUB,ARK,ZEC,STRAT,ZRX,ANT,QSP,NAV&tsyms=USD')
+		
+		axios.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,TRON,IOT,SC,GNT,MTL,PIVX,PART,QTUM,UBQ,LSK,SYS,BNB,QASH,REQ,AMB,BAT,POWR,VEN,PAY,OMG,ENJ,KNC,XLM,SALT,BNT,SUB,ARK,ZEC,STRAT,ZRX,ANT,QSP&tsyms=USD')
 		.then(res => {
 			const crypto = res.data;
 			this.setState({
@@ -39,7 +39,6 @@ class App extends Component {
 	}
 
 	render() {
-		
 		if(Object.keys(this.state.crypto).length === 0) {
 			return (
 				<div>
@@ -61,7 +60,7 @@ class App extends Component {
 						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}} secondary>
 							{Object.keys(this.state.crypto).map((key) => (
 								<Card style={{"width": "15%", "height": "15%"}}
-									image={'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl}
+									image= { require('./images/' + key + '.svg') }
 									header={key}
 									meta={this.state.crypto[key].USD.PRICE}
 									description={this.state.crypto[key].USD.LASTMARKET}
