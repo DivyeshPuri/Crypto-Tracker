@@ -17,14 +17,6 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		axios.get('https://www.cryptocompare.com/api/data/coinlist/')
-		.then(res => {
-			const crypto_list = res.data;
-			this.setState({
-				crypto_list: crypto_list.Data,
-			});
-		})
-
 		//BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,TRON,IOT
 		//MTL,PIVX,PART,QTUM,SC,UBIQ,LSK,SYS,BNB,QASH,RDN*,REQ,GRS,AMB,BAT,GNT,POWR,VEN,PAY,OMG,ENJ,KNC,XLM,SALT,BNT,SUB,ARK,ZEC,STRAT
 		//ZRX,ANT,QSP,NAV
@@ -36,10 +28,18 @@ class App extends Component {
 				crypto: crypto.DISPLAY,
 			});
 		})
+
+		axios.get('https://www.cryptocompare.com/api/data/coinlist/')
+		.then(res => {
+			const crypto_list = res.data;
+			this.setState({
+				crypto_list: crypto_list.Data,
+			});
+		})
 	}
 
 	render() {
-		if(Object.keys(this.state.crypto).length === 0) {
+		if(Object.keys(this.state.crypto_list).length === 0) {
 			return (
 				<div>
 					<div class="ui segment">
@@ -52,6 +52,7 @@ class App extends Component {
 			)
 	  	}
 		else {
+			console.log(this.state.crypto_list);
 			return (
 				<div className="App">
 					<div className="App-header">
@@ -60,7 +61,7 @@ class App extends Component {
 						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}} secondary>
 							{Object.keys(this.state.crypto).map((key) => (
 								<Card style={{"width": "18%", "height": "18%"}}
-									image= { require('./images/' + key + '.svg') }
+									image= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl }
 									header={key}
 									meta={this.state.crypto[key].USD.PRICE}
 									description={this.state.crypto[key].USD.LASTMARKET}
