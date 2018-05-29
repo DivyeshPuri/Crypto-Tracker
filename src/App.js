@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Card, Header } from 'semantic-ui-react';
+import { Button, Card, Image, Header } from 'semantic-ui-react'
 import './App.css';
+import { Icon } from 'semantic-ui-react'
 
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
 		.then(res => {
 			const crypto = res.data;
 			this.setState({
-				crypto: crypto.DISPLAY,
+				crypto: crypto.RAW,
 			});
 		})
 
@@ -37,6 +38,17 @@ class App extends Component {
 			});
 		})
 	}
+
+
+	differenceNum(firstNum, secondNum) {
+		if (firstNum - secondNum > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 
 	render() {
 		if(Object.keys(this.state.crypto_list).length === 0) {
@@ -52,7 +64,6 @@ class App extends Component {
 			)
 	  	}
 		else {
-			console.log(this.state.crypto_list);
 			return (
 				<div className="App">
 					<div className="App-header">
@@ -60,16 +71,20 @@ class App extends Component {
 					</div>
 						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}} secondary>
 							{Object.keys(this.state.crypto).map((key) => (
-								<Card style={{"width": "18%", "height": "18%"}}
-									image= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl }
-									header={key}
-									meta={this.state.crypto[key].USD.PRICE}
-									description={this.state.crypto[key].USD.LASTMARKET}
-									extra={this.state.crypto[key].USD.LOWDAY}
-								/>
+								<Card>
+									<Card.Content>
+										<Image className="image" size='tiny' src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } />
+											<Card.Header>{this.state.crypto_list[key].FullName}</Card.Header>
+											<Card.Meta>{this.state.crypto[key].USD.PRICE}
+												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? <span><Icon disabled name='arrow up' /></span> : <span><Icon disabled name='arrow down' /></span>}
+											</Card.Meta>
+											<Card.Description>{this.state.crypto[key].USD.OPEN24HOUR}</Card.Description>
+									</Card.Content>
+								</Card>
 							))}
 						</Card.Group>
 				</div>
+
 			);
 		}
 	}

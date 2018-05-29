@@ -31,10 +31,6 @@
   }
 }
 
-img {
-  height: 200px;
-  width: 500px;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-color: black;
+.image {
+  padding-bottom: 10px;
 }

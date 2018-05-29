@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-helmet": "^5.2.0",
     "react-scripts": "1.1.4",
     "react-select": "^1.2.1",
     "semantic-ui-css": "^2.3.1",
