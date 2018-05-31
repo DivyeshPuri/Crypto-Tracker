@@ -67,7 +67,7 @@ class App extends Component {
 			return (
 				<div className="App">
 					<div className="App-header">
-						<Header inverted as="h1">Crypto Tracker</Header>
+						<h1 className="header-content">Crypto Tracker</h1>
 					</div>
 						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}} secondary>
 							{Object.keys(this.state.crypto).map((key) => (

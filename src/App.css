@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Boogaloo');
+
 .App {
   text-align: center;
 }
@@ -12,6 +14,16 @@
   height: 150px;
   padding: 20px;
   color: white;
+}
+
+.header-content {
+  font-size: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Boogaloo', cursive;
+  font-weight: normal; 
 }
 
 .App-title {
