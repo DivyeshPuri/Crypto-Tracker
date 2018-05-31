@@ -46,3 +46,8 @@
 .image {
   padding-bottom: 10px;
 }
+
+.pct-change {
+  font-size: small;
+  color: black;
+}

@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Button, Card, Image, Header } from 'semantic-ui-react'
 import './App.css';
-import { Icon } from 'semantic-ui-react'
-
+import { Icon } from 'semantic-ui-react';
+import NumberFormat from "react-number-format";
 
 class App extends Component {
 
@@ -75,12 +75,12 @@ class App extends Component {
 									<Card.Content>
 										<Image className="image" size='tiny' src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } />
 											<Card.Header>{this.state.crypto_list[key].FullName}</Card.Header>
-											<Card.Meta>{this.state.crypto[key].USD.PRICE}
+											<Card.Meta><NumberFormat value = {this.state.crypto[key].USD.PRICE} prefix= "$" displayType={'text'} thousandSeparator={true} decimalPrecision={2} />
 												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
-												<span><Icon disabled name='arrow up' /></span> : 
-												<span><Icon disabled name='arrow down' /></span>}
+												<span className="pct-change"><NumberFormat value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} prefix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow up' /></span> : 
+												<span className="pct-change"><NumberFormat value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} prefix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow down' /></span>}
 											</Card.Meta>
-											<Card.Description>{this.state.crypto[key].USD.OPEN24HOUR}</Card.Description>
+											<Card.Description>{this.state.crypto[key].USD.MARKET}</Card.Description>
 									</Card.Content>
 								</Card>
 							))}
