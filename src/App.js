@@ -67,7 +67,7 @@ class App extends Component {
 			return (
 				<div className="App">
 					<div className="App-header">
-						<h1 className="header-content">Crypto Tracker</h1>
+						<h1 className="header-content">Crypto-Tracker</h1>
 					</div>
 						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}} secondary>
 							{Object.keys(this.state.crypto).map((key) => (
@@ -76,7 +76,9 @@ class App extends Component {
 										<Image className="image" size='tiny' src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } />
 											<Card.Header>{this.state.crypto_list[key].FullName}</Card.Header>
 											<Card.Meta>{this.state.crypto[key].USD.PRICE}
-												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? <span><Icon disabled name='arrow up' /></span> : <span><Icon disabled name='arrow down' /></span>}
+												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
+												<span><Icon disabled name='arrow up' /></span> : 
+												<span><Icon disabled name='arrow down' /></span>}
 											</Card.Meta>
 											<Card.Description>{this.state.crypto[key].USD.OPEN24HOUR}</Card.Description>
 									</Card.Content>
