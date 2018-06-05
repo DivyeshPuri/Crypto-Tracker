@@ -55,3 +55,7 @@
 .current-price {
   color: black;
 }
+
+.pct-container {
+  margin-right: 0px !important;
+}
