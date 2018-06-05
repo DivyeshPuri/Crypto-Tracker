@@ -75,7 +75,7 @@ class App extends Component {
 									<Card.Content>
 										<Image className="image" size='tiny' src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } />
 											<Card.Header>{this.state.crypto_list[key].FullName}</Card.Header>
-											<Card.Meta><NumberFormat value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} />
+											<Card.Meta><NumberFormat className="current-price" value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} />
 												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
 												<span className="pct-change"><NumberFormat value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} prefix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow up' /></span> : 
 												<span className="pct-change"><NumberFormat value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} prefix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow down' /></span>}
