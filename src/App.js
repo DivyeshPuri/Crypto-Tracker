@@ -77,8 +77,8 @@ class App extends Component {
 											<Card.Header>{this.state.crypto_list[key].FullName}</Card.Header>
 											<Card.Meta><NumberFormat className="current-price" value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} />
 												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
-												<span className="pct-change"><NumberFormat value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow up' /></span> : 
-												<span className="pct-change"><NumberFormat value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow down' /></span>}
+												<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow up' /></span> : 
+												<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow down' /></span>}
 											</Card.Meta>
 											<Card.Description>{this.state.crypto[key].USD.MARKET}</Card.Description>
 									</Card.Content>
