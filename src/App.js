@@ -40,16 +40,6 @@ class App extends Component {
 	}
 
 
-	differenceNum(firstNum, secondNum) {
-		if (firstNum - secondNum > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-
 	render() {
 		if(Object.keys(this.state.crypto_list).length === 0) {
 			return (
