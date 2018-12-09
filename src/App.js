@@ -75,7 +75,12 @@ class App extends Component {
 									</div>
 										<div>
 											<h3 class="uk-card-title">{this.state.crypto_list[key].FullName}</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+											<p>
+											<NumberFormat className="current-price" value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} /> {' '}
+												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
+												<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><span uk-icon="arrow-up"></span></span> : 
+												<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><span uk-icon="arrow-down"></span></span>}
+											</p>
 										</div>
 									</div>
 								))}
