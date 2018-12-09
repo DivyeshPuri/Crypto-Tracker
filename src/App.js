@@ -1,15 +1,14 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Button, Card, Image, Header } from 'semantic-ui-react'
 import './App.css';
-import { Icon } from 'semantic-ui-react';
+import UIkit from 'uikit';
+import 'uikit/dist/css/uikit.min.css';
 import NumberFormat from "react-number-format";
 
 class App extends Component {
 
 	constructor(props) {
 		super(props);
-
 		this.state= {
 			crypto: [],
 			crypto_list: [],
@@ -39,10 +38,7 @@ class App extends Component {
 		})
 	}
 
-
 	render() {
-		console.log(this.state.crypto_list);
-
 		if(Object.keys(this.state.crypto_list).length === 0) {
 			return (
 				<div>
@@ -50,7 +46,6 @@ class App extends Component {
   						<div class="ui active inverted dimmer" style={{"height" : "100vh"}}>
 							<div class="ui text loader">Loading</div>
 						</div>
-						<p></p>
 					</div>
 				</div>
 			)
@@ -58,25 +53,35 @@ class App extends Component {
 		else {
 			return (
 				<div className="App">
-					<div className="App-header">
-						<h1 className="header-content">Crypto-Tracker</h1>
+				<nav class="uk-navbar-container uk-light uk-flex" uk-navbar style={{"backgroundColor": "#39f"}}>
+					<div class="uk-navbar-left">
+						<ul class="uk-navbar-nav">
+							<li class="uk-active"><a>Coin-Tracker</a></li>
+						</ul>
 					</div>
-						<Card.Group itemsPerRow={3} centered style={{"marginLeft" : "5%", "marginRight" : "5%", marginTop: "3%",}} secondary>
-							{Object.keys(this.state.crypto).map((key) => (
-								<Card>
-									<Card.Content>
-										<Image className="image" size='tiny' src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } />
-											<Card.Header>{this.state.crypto_list[key].FullName}</Card.Header>
-											<Card.Meta><NumberFormat className="current-price" value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} />
-												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
-												<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow up' /></span> : 
-												<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><Icon disabled name='arrow down' /></span>}
-											</Card.Meta>
-											<Card.Description>{this.state.crypto[key].USD.MARKET}</Card.Description>
-									</Card.Content>
-								</Card>
-							))}
-						</Card.Group>
+					<div class="uk-navbar-right">
+						<ul class="uk-navbar-nav">
+							<li class="uk-active"><a href="#">Why this?</a></li>
+						</ul>
+					</div>
+				</nav>
+					<div class="uk-section">
+						<div class="uk-container">
+							<div id="card-container" class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid uk-height-match="target: > div > .uk-card">
+								{Object.keys(this.state.crypto).map((key) => (
+									<div class="uk-card uk-card-hover uk-card-body" style={{"marginBottom": "10px"}}>
+									<div class="uk-card-media-top">
+										<img src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } alt="" />
+									</div>
+										<div>
+											<h3 class="uk-card-title">{this.state.crypto_list[key].FullName}</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+										</div>
+									</div>
+								))}
+							</div>
+						</div>
+				</div>
 				</div>
 
 			);
