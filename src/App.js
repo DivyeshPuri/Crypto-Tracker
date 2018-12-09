@@ -68,7 +68,7 @@ class App extends Component {
 					</nav>
 						<div class="uk-section">
 							<div class="uk-container">
-								<div id="card-container" class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid uk-height-match="target: > div > .uk-card">
+								<div id="card-container" class="uk-grid-small uk-child-width-1-6@s uk-flex-center uk-text-center" uk-grid uk-height-match="target: > div > .uk-card">
 									{Object.keys(this.state.crypto).map((key) => (
 										<div class="uk-card uk-card-hover uk-card-body" style={{"marginBottom": "10px"}}>
 										<div class="uk-card-media-top">
