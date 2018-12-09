@@ -53,41 +53,42 @@ class App extends Component {
 		else {
 			return (
 				<div className="App">
-				<nav class="uk-navbar-container uk-light uk-flex" uk-navbar style={{"backgroundColor": "#39f"}}>
-					<div class="uk-navbar-left">
-						<ul class="uk-navbar-nav">
-							<li class="uk-active"><a>Coin-Tracker</a></li>
-						</ul>
-					</div>
-					<div class="uk-navbar-right">
-						<ul class="uk-navbar-nav">
-							<li class="uk-active"><a href="https://github.com/DivyeshPuri/Crpto-Tracker"><span uk-icon="code"></span></a></li>
-							<li class="uk-active"><a href="https://getuikit.com"><span uk-icon="uikit"></span></a></li>
-						</ul>
-					</div>
-				</nav>
-					<div class="uk-section">
-						<div class="uk-container">
-							<div id="card-container" class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid uk-height-match="target: > div > .uk-card">
-								{Object.keys(this.state.crypto).map((key) => (
-									<div class="uk-card uk-card-hover uk-card-body" style={{"marginBottom": "10px"}}>
-									<div class="uk-card-media-top">
-										<img src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } alt="" />
-									</div>
-										<div>
-											<h3 class="uk-card-title">{this.state.crypto_list[key].FullName}</h3>
-											<p>
-											<NumberFormat className="current-price" value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} /> {' '}
-												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
-												<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><span uk-icon="arrow-up"></span></span> : 
-												<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><span uk-icon="arrow-down"></span></span>}
-											</p>
-										</div>
-									</div>
-								))}
-							</div>
+					<nav class="uk-navbar-container uk-light uk-flex" uk-navbar style={{"backgroundColor": "#39f"}}>
+						<div class="uk-navbar-left">
+							<ul class="uk-navbar-nav">
+								<li class="uk-active"><a>Coin-Tracker</a></li>
+							</ul>
 						</div>
-				</div>
+						<div class="uk-navbar-right">
+							<ul class="uk-navbar-nav">
+								<li class="uk-active"><a href="https://github.com/DivyeshPuri/Crpto-Tracker"><span uk-icon="code"></span></a></li>
+								<li class="uk-active"><a href="https://getuikit.com"><span uk-icon="uikit"></span></a></li>
+							</ul>
+						</div>
+					</nav>
+						<div class="uk-section">
+							<div class="uk-container">
+								<div id="card-container" class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid uk-height-match="target: > div > .uk-card">
+									{Object.keys(this.state.crypto).map((key) => (
+										<div class="uk-card uk-card-hover uk-card-body" style={{"marginBottom": "10px"}}>
+										<div class="uk-card-media-top">
+											<img src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } alt="" />
+										</div>
+											<div>
+												<h3 class="uk-card-title">{this.state.crypto_list[key].FullName}</h3>
+												<p>
+												<NumberFormat className="current-price" value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} /> {' '}
+													{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
+													<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><span uk-icon="arrow-up"></span></span> : 
+													<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><span uk-icon="arrow-down"></span></span>}
+												</p>
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+					</div>
+					<div class="footer uk-light"><h4>Made with 💗</h4></div>
 				</div>
 
 			);
