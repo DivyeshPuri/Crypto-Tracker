@@ -61,7 +61,8 @@ class App extends Component {
 					</div>
 					<div class="uk-navbar-right">
 						<ul class="uk-navbar-nav">
-							<li class="uk-active"><a href="#">Why this?</a></li>
+							<li class="uk-active"><a href="https://github.com/DivyeshPuri/Crpto-Tracker"><span uk-icon="code"></span></a></li>
+							<li class="uk-active"><a href="https://getuikit.com"><span uk-icon="uikit"></span></a></li>
 						</ul>
 					</div>
 				</nav>
