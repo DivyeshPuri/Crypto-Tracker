@@ -1,7 +1,7 @@
 {
   "name": "crypto_tracker",
   "version": "0.1.0",
-  "homepage": "https://divyeshpuri.github.io/Crpto-Tracker/",
+  "homepage": "https://DivyeshPuri.github.io/Crpto-Tracker/index.html",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
@@ -18,7 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
