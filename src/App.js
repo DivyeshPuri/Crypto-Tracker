@@ -44,7 +44,7 @@ class App extends Component {
 				<div>
 					<div class="ui segment">
   						<div class="ui active inverted dimmer" style={{"height" : "100vh"}}>
-							<div class="ui text loader">Loading</div>
+						  	<div uk-spinner></div>
 						</div>
 					</div>
 				</div>
