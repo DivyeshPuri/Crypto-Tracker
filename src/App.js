@@ -29,7 +29,7 @@ class App extends Component {
 			});
 		})
 
-		axios.get('https://www.cryptocompare.com/api/data/coinlist/')
+		axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
 		.then(res => {
 			const crypto_list = res.data;
 			this.setState({
