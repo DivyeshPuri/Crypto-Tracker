@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import './App.css';
-import UIkit from 'uikit';
 import 'uikit/dist/css/uikit.min.css';
 import NumberFormat from "react-number-format";
 
@@ -42,8 +41,8 @@ class App extends Component {
 		if(Object.keys(this.state.crypto_list).length === 0) {
 			return (
 				<div>
-					<div class="ui segment">
-  						<div class="ui active inverted dimmer" style={{"height" : "100vh"}}>
+					<div class="uk-section">
+  						<div class="uk-container">
 						  	<div uk-spinner></div>
 						</div>
 					</div>
