@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import './App.css';
 import 'uikit/dist/css/uikit.min.css';
+import 'uikit/dist/js/uikit.js';
+import 'uikit/dist/js/uikit-icons.js';
 import NumberFormat from "react-number-format";
 
 class App extends Component {
@@ -40,10 +42,10 @@ class App extends Component {
 	render() {
 		if(Object.keys(this.state.crypto_list).length === 0) {
 			return (
-				<div>
+				<div id="loader-container">
 					<div class="uk-section">
   						<div class="uk-container">
-						  	<div uk-spinner></div>
+							<span data-uk-spinner={''} />
 						</div>
 					</div>
 				</div>
