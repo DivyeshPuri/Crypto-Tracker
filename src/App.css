@@ -66,6 +66,12 @@
   flex-wrap: wrap;
 }
 
+.card {
+  margin: 0px 1rem 1rem 0px;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
 .footer {
   background-color: #39f;
   height: 3rem;
