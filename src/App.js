@@ -69,14 +69,14 @@ class App extends Component {
 					</nav>
 						<div class="uk-section">
 							<div class="uk-container">
-								<div id="card-container" class="uk-grid-small uk-child-width-1-6@s uk-flex-center uk-text-center" uk-grid uk-height-match="target: > div > .uk-card">
+								<div id="card-container" class="uk-grid-small uk-child-width-1-6@s uk-flex-center uk-text-center" uk-grid>
 									{Object.keys(this.state.crypto).map((key) => (
-										<div class="uk-card uk-card-hover uk-card-body" style={{"marginBottom": "10px"}}>
+										<div class="card uk-card uk-card-hover uk-card">
 										<div class="uk-card-media-top">
 											<img src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } alt="" />
 										</div>
 											<div>
-												<h3 class="uk-card-title">{this.state.crypto_list[key].FullName}</h3>
+												<h4 class="uk-card-title">{this.state.crypto_list[key].FullName}</h4>
 												<p>
 												<NumberFormat className="current-price" value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} /> {' '}
 													{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
