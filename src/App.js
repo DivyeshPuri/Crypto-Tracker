@@ -71,7 +71,7 @@ class App extends Component {
 							<div class="uk-container">
 								<div id="card-container" class="uk-grid-small uk-child-width-1-6@s uk-flex-center uk-text-center" uk-grid>
 									{Object.keys(this.state.crypto).map((key) => (
-										<div class="card uk-card uk-card-hover uk-card">
+										<div class="card uk-card-default uk-card-hover uk-card">
 										<div class="uk-card-media-top">
 											<img src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } alt="" />
 										</div>
