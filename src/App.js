@@ -89,7 +89,11 @@ class App extends Component {
 								</div>
 							</div>
 					</div>
-					<div class="footer uk-light"><h4>Made with 💗</h4></div>
+					<div class="footer uk-light">
+						<div className="footer-text">
+							<span>Made by Divyesh ❤️</span>
+						</div>
+					</div>
 				</div>
 
 			);
