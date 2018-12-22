@@ -72,6 +72,10 @@
   padding-left: 1rem;
 }
 
+.text-primary {
+  color: navy !important;
+}
+
 .footer {
   background-color: #39f;
   display: flex;
