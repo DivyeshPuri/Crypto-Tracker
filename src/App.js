@@ -61,9 +61,9 @@ class App extends Component {
 							</ul>
 						</div>
 					</nav>
-					<Route exact path="/detail/:mnemonic"  component={CardDetail} />
+					<Route exact path="/detail/:name"  component={CardDetail} />
 					<Route exact path="/" component={Home} />
-					<div class="footer uk-light">
+					<div class="footer uk-light" uk-sticky="bottom: true">
 						<div className="footer-text">
 							<span>Made by Divyesh ❤️</span>
 						</div>
