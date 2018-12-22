@@ -13,7 +13,7 @@ class CardDetail extends Component {
 	}
 
     componentDidMount() {
-        axios.get(`https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.match.params['name']}&tsym=USD&limit=30&aggregate=3&e=Cexio`)
+        axios.get(`https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.match.params['name']}&tsym=USD&limit=30`)
 		.then(res => {
             const data = res.data;
             let sortedData = [];
