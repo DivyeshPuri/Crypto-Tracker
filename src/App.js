@@ -5,7 +5,13 @@ import 'uikit/dist/css/uikit.min.css';
 import 'uikit/dist/js/uikit.js';
 import 'uikit/dist/js/uikit-icons.js';
 import NumberFormat from "react-number-format";
-
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+  } from 'react-router-dom';
+import CardDetail from './CardDetail';
+import Home from './Home';
 class App extends Component {
 
 	constructor(props) {
@@ -38,21 +44,9 @@ class App extends Component {
 			});
 		})
 	}
-
 	render() {
-		if(Object.keys(this.state.crypto_list).length === 0) {
-			return (
-				<div id="loader-container">
-					<div class="uk-section">
-  						<div class="uk-container">
-							<span data-uk-spinner={''} />
-						</div>
-					</div>
-				</div>
-			)
-	  	}
-		else {
-			return (
+		return (
+			<Router>
 				<div className="App">
 					<nav class="uk-navbar-container uk-light uk-flex" uk-navbar style={{"backgroundColor": "#39f"}}>
 						<div class="uk-navbar-left">
@@ -67,38 +61,16 @@ class App extends Component {
 							</ul>
 						</div>
 					</nav>
-						<div class="uk-section">
-							<div class="uk-container">
-								<div id="card-container" class="uk-grid-small uk-child-width-1-6@s uk-flex-center uk-text-center" uk-grid>
-									{Object.keys(this.state.crypto).map((key) => (
-										<div class="card uk-card-default uk-card-hover uk-card">
-										<div class="uk-card-media-top">
-											<img src= { 'https://www.cryptocompare.com' + this.state.crypto_list[key].ImageUrl } alt="" />
-										</div>
-											<div>
-												<h4 class="uk-card-title">{this.state.crypto_list[key].FullName}</h4>
-												<p>
-												<NumberFormat className="current-price" value = {parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)} prefix= "$" displayType={'text'} decimalPrecision={2} /> {' '}
-													{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? 
-													<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><span uk-icon="arrow-up"></span></span> : 
-													<span className="pct-change"><NumberFormat className="pct-container" value = {parseFloat(this.state.crypto[key].USD.CHANGEPCT24HOUR).toFixed(2)} suffix= "%" displayType={'text'} decimalPrecision={2} /><span uk-icon="arrow-down"></span></span>}
-												</p>
-											</div>
-										</div>
-									))}
-								</div>
-							</div>
-					</div>
+					<Route exact path="/detail/:mnemonic"  component={CardDetail} />
+					<Route exact path="/" component={Home} />
 					<div class="footer uk-light">
 						<div className="footer-text">
 							<span>Made by Divyesh ❤️</span>
 						</div>
 					</div>
 				</div>
-
-			);
-		}
+			</Router>	
+		);
 	}
 }
-
 export default App;
