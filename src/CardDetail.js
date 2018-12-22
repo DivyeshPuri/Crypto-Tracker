@@ -2,54 +2,108 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 import moment from 'moment';
+import NumberFormat from "react-number-format";
 
 class CardDetail extends Component {
 
-    constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state= {
 			plot: [],
+			coin: []
 		};
 	}
 
-    componentDidMount() {
-        axios.get(`https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.match.params['name']}&tsym=USD&limit=30`)
+	componentDidMount() {
+		axios.get(`https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.match.params['name']}&tsym=USD&limit=30`)
 		.then(res => {
-            const data = res.data;
-            let sortedData = [];
-            let count = 0;
-            for (let date in data.Data){
-                sortedData.push({
-                    d: moment(data.Data[date].time*1000).format('MMM DD YYYY'),
-                    p: data.Data[date].close.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
-                    x: count, 
-                    y: data.Data[date].close
-                });
-                count++;
-            }
+			const data = res.data;
+			let sortedData = [];
+			let count = 0;
+			for (let date in data.Data){
+				sortedData.push({
+					d: moment(data.Data[date].time*1000).format('MMM DD YYYY'),
+					p: data.Data[date].close.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
+					x: count, 
+					y: data.Data[date].close
+				});
+				count++;
+			}
 			this.setState({
 				plot: sortedData,
-            });
+			});
 		})
-    }
+		
+		axios.get(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${this.props.match.params['name']}&tsyms=USD`)
+		.then(res => {
+			const data = res.data;
+			this.setState({
+				coin: data.RAW[this.props.match.params['name']],
+			});
+		})
+	}
 
   render() {
-      console.log(this.state.plot);
-    return (
-        <div>
-            <h1>Card Detail</h1>
-            <div>
-                <AreaChart width={600} height={400} data={this.state.plot}
-                    margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-                    <CartesianGrid vertical={false} horizontal={false} strokeDasharray="3 3"/>
-                    <XAxis dataKey="d"/>
-                    <YAxis dataKey="y"/>
-                    <Tooltip/>
-                    <Area type='curveLinear' dataKey='y' stroke='#8884d8' fill='#8884d8' />
-                </AreaChart>
-            </div>
-        </div>
-    );
+	  console.log(this.state.coin);
+	  if(Object.keys(this.state.coin).length === 0) {
+		  return (
+			<div id="loader-container">
+					<div class="uk-section">
+  						<div class="uk-container">
+							<span data-uk-spinner={''} />
+						</div>
+					</div>
+				</div>
+		  );
+	  }
+	  else {
+		return (
+			<div className="uk-container">
+				<div uk-grid="true" className="uk-grid-large uk-child-width-expand@s uk-margin-large-top">
+					<div className="uk-width-1-2@s">
+						<h1 classname="uk-text-lead uk-text-primary">
+							{this.state.coin['USD'].FROMSYMBOL}
+							{this.state.coin['USD'].CHANGE24HOUR > 0 ? 
+								<span className="uk-text-lead uk-text-success"><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].CHANGEPCT24HOUR).toFixed(2)} suffix= "% )" prefix=" ( " displayType={'text'} decimalPrecision={2} /></span> : 
+								<span className="uk-text-lead uk-text-danger"><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].CHANGEPCT24HOUR).toFixed(2)} suffix= "% )" prefix=" ( " displayType={'text'} decimalPrecision={2} /></span>}
+						</h1>
+						<div uk-grid="true" className="uk-margin-large-top uk-grid-large uk-child-width-expand@s">
+							<div className="uk-width-1-2@s">
+								<div classname="uk-text-left">
+									<span>Current Price:</span>
+									<h3><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].PRICE).toFixed(2)} displayType={'text'} decimalPrecision={2} /></h3>
+								</div>
+								<div classname="uk-text-left">
+									<span>Volume 24h:</span>
+									<h3><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].VOLUME24HOUR).toFixed(2)} displayType={'text'} decimalPrecision={2} /></h3>
+								</div>
+							</div>
+							<div className="uk-width-1-2@s">
+								<div classname="uk-text-left">
+									<span>Market Cap:</span>
+									<h3><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].MKTCAP).toFixed(2)} displayType={'text'} decimalPrecision={2} /></h3>
+								</div>
+								<div classname="uk-text-left">
+									<span>Volume 1h:</span>
+									<h3><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].VOLUMEHOUR).toFixed(2)} displayType={'text'} decimalPrecision={2} /></h3>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="uk-width-1-2@s">
+						<AreaChart width={600} height={400} data={this.state.plot}
+							margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+							<CartesianGrid vertical={false} horizontal={false} strokeDasharray="3 3"/>
+							<XAxis dataKey="d"/>
+							<YAxis dataKey="y"/>
+							<Tooltip/>
+							<Area type='curveLinear' dataKey='y' stroke='#8884d8' fill='#8884d8' />
+						</AreaChart>
+					</div>
+				</div>
+			</div>
+		);
+	  }
   }
 }
 
