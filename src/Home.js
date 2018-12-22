@@ -81,11 +81,6 @@ class Home extends Component {
 									</div>
 								</div>
 						</div>
-						<div class="footer uk-light">
-							<div className="footer-text">
-								<span>Made by Divyesh ❤️</span>
-							</div>
-						</div>
 					</div>
 			);
 		}
