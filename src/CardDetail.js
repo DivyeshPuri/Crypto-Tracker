@@ -58,10 +58,10 @@ class CardDetail extends Component {
 	  }
 	  else {
 		return (
-			<div className="uk-container">
+			<div className="uk-container uk-text-lead uk-text-left text-primary">
 				<div uk-grid="true" className="uk-grid-large uk-child-width-expand@s uk-margin-large-top">
 					<div className="uk-width-1-2@s">
-						<h1 classname="uk-text-lead uk-text-primary">
+						<h1 className='text-primary'>
 							{this.state.coin['USD'].FROMSYMBOL}
 							{this.state.coin['USD'].CHANGE24HOUR > 0 ? 
 								<span className="uk-text-lead uk-text-success"><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].CHANGEPCT24HOUR).toFixed(2)} suffix= "% )" prefix=" ( " displayType={'text'} decimalPrecision={2} /></span> : 
@@ -71,7 +71,7 @@ class CardDetail extends Component {
 							<div className="uk-width-1-2@s">
 								<div classname="uk-text-left">
 									<span>Current Price:</span>
-									<h3><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].PRICE).toFixed(2)} displayType={'text'} decimalPrecision={2} /></h3>
+									<h3><NumberFormat className="pct-container" value = {parseFloat(this.state.coin['USD'].PRICE).toFixed(2)} prefix="$ " displayType={'text'} decimalPrecision={2} /></h3>
 								</div>
 								<div classname="uk-text-left">
 									<span>Volume 24h:</span>
@@ -90,14 +90,14 @@ class CardDetail extends Component {
 							</div>
 						</div>
 					</div>
-					<div className="uk-width-1-2@s">
+					<div className="uk-width-1-2@s uk-text-small">
 						<AreaChart width={600} height={400} data={this.state.plot}
 							margin={{top: 10, right: 30, left: 0, bottom: 0}}>
 							<CartesianGrid vertical={false} horizontal={false} strokeDasharray="3 3"/>
 							<XAxis dataKey="d"/>
 							<YAxis dataKey="y"/>
 							<Tooltip/>
-							<Area type='curveLinear' dataKey='y' stroke='#8884d8' fill='#8884d8' />
+							<Area type='curveLinear' dataKey='y' stroke='rgb(51, 153, 255)' fill='rgb(51, 153, 255)' />
 						</AreaChart>
 					</div>
 				</div>
