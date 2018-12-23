@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Boogaloo');
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -76,13 +81,16 @@
   color: navy !important;
 }
 
+.container {
+  min-height: 94vh;
+}
+
 .footer {
   background-color: #39f;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 3rem;
-  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
