@@ -48,22 +48,24 @@ class App extends Component {
 		return (
 			<Router>
 				<div className="App">
-					<nav class="uk-navbar-container uk-light uk-flex" uk-navbar style={{"backgroundColor": "#39f"}}>
-						<div class="uk-navbar-left">
-							<ul class="uk-navbar-nav">
-								<li class="uk-active"><a>Coin-Tracker</a></li>
-							</ul>
-						</div>
-						<div class="uk-navbar-right">
-							<ul class="uk-navbar-nav">
-								<li class="uk-active"><a href="https://github.com/DivyeshPuri/Crpto-Tracker"><span uk-icon="code"></span></a></li>
-								<li class="uk-active"><a href="https://getuikit.com"><span uk-icon="uikit"></span></a></li>
-							</ul>
-						</div>
-					</nav>
-					<Route exact path="/detail/:name"  component={CardDetail} />
-					<Route exact path="/" component={Home} />
-					<div class="footer uk-light" uk-sticky="bottom: true">
+					<div className="container">
+						<nav class="uk-navbar-container uk-light uk-flex" uk-navbar style={{"backgroundColor": "#39f"}}>
+							<div class="uk-navbar-left">
+								<ul class="uk-navbar-nav">
+									<li class="uk-active"><a>Coin-Tracker</a></li>
+								</ul>
+							</div>
+							<div class="uk-navbar-right">
+								<ul class="uk-navbar-nav">
+									<li class="uk-active"><a href="https://github.com/DivyeshPuri/Crpto-Tracker"><span uk-icon="code"></span></a></li>
+									<li class="uk-active"><a href="https://getuikit.com"><span uk-icon="uikit"></span></a></li>
+								</ul>
+							</div>
+						</nav>
+						<Route exact path="/detail/:name"  component={CardDetail} />
+						<Route exact path="/" component={Home} />
+					</div>
+					<div class="footer uk-light">
 						<div className="footer-text">
 							<span>Made by Divyesh ❤️</span>
 						</div>
