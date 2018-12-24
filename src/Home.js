@@ -6,8 +6,6 @@ import 'uikit/dist/js/uikit.js';
 import 'uikit/dist/js/uikit-icons.js';
 import NumberFormat from "react-number-format";
 import {
-    BrowserRouter as Router,
-    Route,
     Link
   } from 'react-router-dom';
 
