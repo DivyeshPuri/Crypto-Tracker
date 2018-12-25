@@ -22,10 +22,10 @@ class CardDetail extends Component {
 			let count = 0;
 			for (let date in data.Data){
 				sortedData.push({
-					d: moment(data.Data[date].time*1000).format('MMM DD YYYY'),
+					day: moment(data.Data[date].time*1000).format('MMM DD YYYY'),
 					p: data.Data[date].close.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' }),
 					x: count, 
-					y: data.Data[date].close
+					Price: data.Data[date].close
 				});
 				count++;
 			}
@@ -94,10 +94,10 @@ class CardDetail extends Component {
 						<AreaChart width={600} height={400} data={this.state.plot}
 							margin={{top: 10, right: 30, left: 0, bottom: 0}}>
 							<CartesianGrid vertical={false} horizontal={false} strokeDasharray="3 3"/>
-							<XAxis dataKey="d"/>
-							<YAxis dataKey="y"/>
+							<XAxis dataKey="day"/>
+							<YAxis dataKey="Price"/>
 							<Tooltip/>
-							<Area type='curveLinear' dataKey='y' stroke='rgb(51, 153, 255)' fill='rgb(51, 153, 255)' />
+							<Area type='curveLinear' dataKey='Price' stroke='rgb(51, 153, 255)' fill='rgb(51, 153, 255)' />
 						</AreaChart>
 					</div>
 				</div>
