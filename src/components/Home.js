@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import NumberFormat from 'react-number-format';
-import { Link } from 'react-router-dom';
-
 import 'uikit/dist/css/uikit.min.css';
 import 'uikit/dist/js/uikit.js';
 import 'uikit/dist/js/uikit-icons.js';
+import CardList from './CardList';
 
 class Home extends Component {
 	constructor(props) {
@@ -13,7 +11,8 @@ class Home extends Component {
 		this.state = {
 			crypto: [],
 			crypto_list: [],
-			images: {}
+			toggle: true,
+			sortedData: []
 		};
 	}
 
@@ -24,7 +23,7 @@ class Home extends Component {
 
 		axios
 			.get(
-				'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,IOT,SC,GNT,MTL,PIVX,PART,QTUM,UBQ,LSK,SYS,BNB,QASH,REQ,AMB,BAT,POWR,PAY,OMG,ENJ,KNC,XLM,SALT,BNT,SUB,ARK,ZEC,STRAT,ZRX,ANT,QSP&tsyms=USD'
+				'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,IOT,SC,GNT,MTL,PIVX,PART,QTUM,UBQ,LSK,SYS,BNB,QASH,REQ,AMB,BAT,POWR,PAY,OMG,ENJ,KNC,XLM,SALT,BNT,SUB,ARK,ZEC,STRAT,ZRX,ANT,QSP&tsyms=USD'
 			)
 			.then(res => {
 				const crypto = res.data;
@@ -33,12 +32,35 @@ class Home extends Component {
 				});
 			});
 
-		axios.get('https://min-api.cryptocompare.com/data/all/coinlist').then(res => {
-			const crypto_list = res.data;
-			this.setState({
-				crypto_list: crypto_list.Data
+		axios.
+			get('https://min-api.cryptocompare.com/data/all/coinlist')
+			.then(res => {
+				const crypto_list = res.data;
+				this.setState({
+					crypto_list: crypto_list.Data
+				});
 			});
-		});
+	}
+
+	handleClick = (e) => {
+		// Not a good solution should be imprved
+		const myData = this.state.crypto;
+		var sorted = Object.keys(myData).sort();
+		var coinlist = "";
+		for (let val of sorted) {
+			coinlist += val + ",";
+		}
+		axios
+			.get(
+				'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + coinlist +'&tsyms=USD'
+			)
+			.then(res => {
+				const crypto = res.data;
+				this.setState({
+					sortedData: crypto.RAW,
+					toggle: !this.state.toggle
+				});
+			});
 	}
 
 	render() {
@@ -55,74 +77,22 @@ class Home extends Component {
 		} else {
 			return (
 				<div className="App">
+				<div className="uk-align-right uk-margin-large-right uk-margin-top">
+					<button className="uk-button uk-button-default" type="button">SORT BY<span uk-icon="arrow-down" /></button>
+					<div className="uk-margin-remove-right" uk-dropdown="mode: click; pos: bottom-justify">
+						<ul className="uk-nav uk-dropdown-nav uk-text-left">
+							<li onClick={this.handleClick}><a href="#"><span uk-icon="hashtag" /> BY NAME</a></li>
+							<li onClick={this.handleClick}><a href="#"><span uk-icon="hashtag" /> BY POPULARITY</a></li>
+						</ul>
+					</div>
+				</div>
 					<div className="uk-section">
 						<div className="uk-container">
-							<div
-								id="card-container"
-								className="uk-grid-small uk-child-width-1-6@s uk-flex-center uk-text-center"
-								uk-grid="true"
-							>
-								{Object.keys(this.state.crypto).map((key, index) => (
-									<div
-										className="card uk-card-default uk-card-hover uk-card uk-margin-large-bottom"
-										key={index}
-									>
-										<div className="uk-card-media-top uk-margin-bottom">
-											<img
-												src={
-													'https://www.cryptocompare.com' +
-													this.state.crypto_list[key].ImageUrl
-												}
-												className="crypto-logo"
-												alt=""
-											/>
-										</div>
-										<div>
-											<h4 className="uk-card-title">
-												<Link to={`/detail/${this.state.crypto_list[key].Symbol}`}>
-													{this.state.crypto_list[key].FullName}
-												</Link>
-											</h4>
-											<p>
-												<NumberFormat
-													className="current-price"
-													value={parseFloat(this.state.crypto[key].USD.PRICE).toFixed(2)}
-													prefix="$"
-													displayType={'text'}
-													decimalScale={2}
-												/>{' '}
-												{this.state.crypto[key].USD.CHANGE24HOUR > 0 ? (
-													<span className="pct-change">
-														<NumberFormat
-															className="pct-container"
-															value={parseFloat(
-																this.state.crypto[key].USD.CHANGEPCT24HOUR
-															).toFixed(2)}
-															suffix="%"
-															displayType={'text'}
-															decimalScale={2}
-														/>
-														<span uk-icon="arrow-up" />
-													</span>
-												) : (
-													<span className="pct-change">
-														<NumberFormat
-															className="pct-container"
-															value={parseFloat(
-																this.state.crypto[key].USD.CHANGEPCT24HOUR
-															).toFixed(2)}
-															suffix="%"
-															displayType={'text'}
-															decimalScale={2}
-														/>
-														<span uk-icon="arrow-down" />
-													</span>
-												)}
-											</p>
-										</div>
-									</div>
-								))}
-							</div>
+							{
+								this.state.toggle ?
+								<CardList crypto_list = {this.state.crypto_list} crypto = {this.state.crypto}></CardList>:
+								<CardList crypto_list = {this.state.crypto_list} crypto = {this.state.sortedData}></CardList>
+							}
 						</div>
 					</div>
 				</div>
