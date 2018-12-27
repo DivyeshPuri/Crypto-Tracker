@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Boogaloo');
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+.App {
+	text-align: center;
+}
+
+.header-content {
+	font-size: 5rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Boogaloo', cursive;
+	font-weight: normal;
+}
+
+.navbar-logo {
+	font-size: 40px;
+}
+
+.pct-change {
+	font-size: small;
+	color: black;
+}
+
+.current-price {
+	color: black;
+}
+
+.crypto-logo {
+	width: 120px;
+}
+
+.pct-container {
+	margin-right: 0px !important;
+}
+
+.heading-tertiary {
+	margin-top: 10px;
+}
+
+#card-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.card {
+	margin: 0px 1rem 1rem 0px;
+	padding-right: 1rem;
+	padding-left: 1rem;
+}
+
+.text-primary {
+	color: navy !important;
+}
+
+.crypto-header {
+	display: flex;
+	align-items: center;
+}
+
+.crypto-header > span {
+	margin-right: 40px;
+}
+
+.container {
+	min-height: 94vh;
+}
+
+.footer {
+	background-color: #39f;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3rem;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+#loader-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
