@@ -19,7 +19,7 @@ class CardList extends Component {
 			return (
                 <div
                     id="card-container"
-                    className="uk-grid-small uk-child-width-1-6@s uk-flex-center uk-text-center"
+                    className="uk-grid-small uk-child-width-* uk-child-width-1-6@s uk-text-center"
                     uk-grid="true"
                 >
                     {Object.keys(this.props.crypto).map((key, index) => (

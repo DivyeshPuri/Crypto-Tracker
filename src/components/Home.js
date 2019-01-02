@@ -77,15 +77,19 @@ class Home extends Component {
 		} else {
 			return (
 				<div className="App">
-				<div className="uk-align-right uk-margin-large-right uk-margin-top">
-					<button className="uk-button uk-button-default" type="button">SORT BY<span uk-icon="arrow-down" /></button>
-					<div className="uk-margin-remove-right" uk-dropdown="mode: click; pos: bottom-justify">
-						<ul className="uk-nav uk-dropdown-nav uk-text-left">
-							<li onClick={this.handleClick}><a href="#"><span uk-icon="hashtag" /> BY NAME</a></li>
-							<li onClick={this.handleClick}><a href="#"><span uk-icon="hashtag" /> BY POPULARITY</a></li>
-						</ul>
+					<div className="uk-section uk-padding-remove">
+						<div className="uk-container">
+							<div className="uk-align-right uk-margin-large-right uk-margin-top">
+								<button className="uk-button uk-button-default" type="button">SORT BY<span uk-icon="arrow-down" /></button>
+									<div className="uk-margin-remove-right" uk-dropdown="mode: click; pos: bottom-justify">
+										<ul className="uk-nav uk-dropdown-nav uk-text-left">
+											<li onClick={this.handleClick}><a href="#"><span uk-icon="hashtag" /> BY NAME</a></li>
+											<li onClick={this.handleClick}><a href="#"><span uk-icon="hashtag" /> BY POPULARITY</a></li>
+										</ul>
+									</div>
+							</div>
+						</div>
 					</div>
-				</div>
 					<div className="uk-section">
 						<div className="uk-container">
 							{
